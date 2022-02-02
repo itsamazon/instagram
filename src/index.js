@@ -1,12 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+<<<<<<< HEAD
 import App from './App'
 // import LandingPage from './components/LandingPage/index'
 
 ReactDOM.render(
   <React.StrictMode>
     <App/>
+    </React.StrictMode>
+=======
+// import LandingPage from './components/LandingPage/index'
+import Signup from './components/Signup/index'
+
+ReactDOM.render(
+  <React.StrictMode>
+    <Signup />
+>>>>>>> 95dc2550375ff358197e901653b4f48bd85b11f4
   </React.StrictMode>,
   document.getElementById('root')
 );
