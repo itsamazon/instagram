@@ -1,11 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import LandingPage from './components/LandingPage/index'
+import App from './App'
+// import LandingPage from './components/LandingPage/index'
 
 ReactDOM.render(
   <React.StrictMode>
-    <LandingPage />
+    <App/>
   </React.StrictMode>,
   document.getElementById('root')
 );
