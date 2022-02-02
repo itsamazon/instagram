@@ -1,11 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import LandingPage from './components/LandingPage/index'
+// import LandingPage from './components/LandingPage/index'
+import Signup from './components/Signup/index'
 
 ReactDOM.render(
   <React.StrictMode>
-    <LandingPage />
+    <Signup />
   </React.StrictMode>,
   document.getElementById('root')
 );
