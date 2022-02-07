@@ -1,0 +1,40 @@
+  .container{
+    composes: container from '../../index.css'
+  }
+  
+  .content{
+    composes: content from '../../index.css';
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+  
+  .label {
+    display: block;
+    width: 10rem;
+    margin-left: 0.1rem;
+    margin-right: 1.5rem;
+    text-align: left;
+    margin-top: -0.2rem;
+  }
+
+  .check{
+    display: flex;
+    align-items: flex-start;
+  }
+
+  .check a{ 
+    margin-top: -0.2rem;
+    color: #006ECF;
+    margin-left: auto;
+  }
+
+
+  @media screen and (max-width:640px) {
+    .content{
+      margin: 5rem 0;
+      padding: 0 2rem;
+    }
+  }
+ 
+
+  

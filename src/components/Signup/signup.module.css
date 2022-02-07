@@ -1,0 +1,52 @@
+.container{
+    composes:container from '../../index.css';
+    /* padding: 4rem 0; */
+}
+
+.content{
+    composes: content from '../../index.css';
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
+    /* margin: 2rem 0; */
+}
+
+.content h2{
+    margin-bottom: 10px;
+    font-weight: 500;
+    text-align: left;
+    font-size: 18px;
+    line-height: 28px;
+}
+
+
+.agree{
+    text-align: left;
+    
+}
+
+
+.agree span{
+    font-size: 0.85rem;
+}
+
+.content button{
+    margin-bottom: 0.1rem;
+}
+
+.error {
+    margin: -20px 0 10px 10px ;
+    padding: 0;
+    color: red;
+    text-align: left;
+    
+}
+
+.noerror{
+    display: none;
+}
+
+@media screen and (max-width:640px){
+    .agree span{
+        font-size: 0.75rem;
+    }
+}

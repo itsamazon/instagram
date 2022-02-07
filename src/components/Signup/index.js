@@ -1,13 +1,15 @@
-import { Link } from "react-router-dom"
-import  instagramlogo from '../../Images/Instagram Logo undefined.svg'
-import './styles.css'
+import { Link,useNavigate} from "react-router-dom"
+import  logo from '../../Images/logo/Asiko.svg'
+import signupcss from './signup.module.css'
 import { useState,useEffect} from 'react';
+import axios from 'axios'
 
 const Signup = () => {
-    const initialValue = {firstname:"",lastname:"",username:"",password:""};
+    const initialValue = {firstName:"",lastName:"",username:"",password:""};
     const [formValues,setFormValues] = useState(initialValue);
     const [formError, setFormErrors] = useState({});
     const [isSubmit, setIsSubmit] = useState(false)
+    const onnavigate = useNavigate()
 
     const handleChange = (e) => {
         const {name,value} = e.target;
@@ -17,99 +19,100 @@ const Signup = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setFormErrors(validate(formValues))
+        setFormErrors(validate(formValues)) 
         setIsSubmit(true);
-        
     }
-
     useEffect(() => {
         if (Object.keys(formError).length === 0 && isSubmit){
-            console.log(formValues)
+            axios.post('https://asiko-app.herokuapp.com/createuser', formValues).then(res => {
+                if(res.status === 200){
+                    onnavigate('/login')
+                }
+            });
+            
         }
     },[formError])
 
     const validate = (values) => {
         const error = {}
         
-        if(!values.firstname){
-            error.firstname = "First name is required!"
-        }
-        if(!values.lastname){
-            error.lastname = "Last name is required!"
-        }
         if(!values.username){
             error.username = "User name is required!"
         }
 
-        if(!values.password){
-            error.password = "Password is required!";
-        }else if(values.password.length<8 ){
+        if(values.password.length<8 ){
             error.password = "Password must be 8 characters long"
-        }
+            const thep = document.createElement('P')
+            const textnode = document.createTextNode(error.password)
+            document.getElementsByClassName('error')[0].appendChild(thep.appendChild(textnode))
+        } 
 
         return error
     }
 
     return(
-        <div className = 'signup' >
-                <pre>{JSON.stringify(formValues,undefined,2)}</pre>
-            <div className = 'container'>
+        <div className = {signupcss.container }>
+            <div className = {signupcss.content }>
                 <header className = 'header'>
-                    <img src={instagramlogo}></img>
+                    <img src={logo}></img>
                     <p>Helping you share the moment</p>
                 </header>
                 <h2>Lets get started!</h2>
+                <div className="error">
+                    
+                </div>
+                
+
                 <form onSubmit={handleSubmit}>
                     <label for='name'> First Name </label>
                     <input 
                     id='name' 
-                    name='firstname'
-                    // required 
+                    name='firstName'
+                    required 
                     type='text'
                     value={formValues.firstname} 
                     onChange={handleChange}
                     placeholder='First name' />
-                    <p id={formError.firstname == undefined ? "noerror": 'error'}>{'*' + formError.firstname}</p>
 
                     <label for='lname'> Last Name </label>
                     <input 
                     id='lname' 
-                    name='lastname'
-                    // required 
+                    name='lastName'
+                    required 
                     type='text' 
                     value={formValues.lastname} 
                     onChange={handleChange}
                     placeholder='Last name' />
-                    <p id = {formError.lastname == undefined ? "noerror": 'error'}>{'*' + formError.lastname}</p>
 
                     <label for='username'>Username </label>
                     <input 
                     id='username' 
                     name='username'
-                    // required 
+                    required 
                     type='text' 
                     value={formValues.username}
                     onChange={handleChange} 
                     placeholder='Username' />
-                    <p id={formError.username == undefined ? "noerror": 'error'}>{'*' + formError.username}</p>
 
                     <label for='password'>Password </label>
                     <input 
                     id='password' 
-                    // required 
                     name='password'
+                    required 
                     type='password' 
-                    value={formValues.password} 
-                    onChange={handleChange}
-                    placeholder='Password'/>
-                    <p id= {formError.password == undefined ? "noerror": 'error'}>{ '*' + formError.password}</p>
+                    value={formValues.password}
+                    onChange={handleChange} 
+                    placeholder='Password' />
 
-                    <div>
-                    <input type='checkbox' ></input>
-                    <span> I accept the <a href='#'>Terms and Conditions</a> & <a href='#'>Privacy Policy</a></span>
+                    <div className={signupcss.agree}>
+                        <input type='checkbox' ></input>
+                        <span className="span"> I accept the <a href='#'>Terms and Conditions</a> & <a href='#'>Privacy Policy</a></span>
                     </div>
-                    <button type='submit'>Create Account</button>
+
+                    <button className="button" type='submit'>Create Account</button>
                 </form>
+
+
                 <p>Already have an account? <a href='#'>Login </a></p>
             </div>
         </div>
