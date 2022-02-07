@@ -7,8 +7,8 @@ import AppRoutes from './routes/appRoutes';
 
 ReactDOM.render(
   <React.StrictMode>
-    <AppRoutes />
-  </React.StrictMode>,
+    <AppRoutes/>
+    </React.StrictMode>,
   document.getElementById('root')
 );
 
